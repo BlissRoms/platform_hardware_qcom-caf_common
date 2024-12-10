@@ -77,6 +77,10 @@ SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
 
+ifeq ($(TARGET_USES_FOD_ZPOS),true)
+    SOONG_CONFIG_qtidisplay_udfps := true
+endif
+
 # Add rmnetctl to soong config namespaces
 SOONG_CONFIG_NAMESPACES += rmnetctl
 
