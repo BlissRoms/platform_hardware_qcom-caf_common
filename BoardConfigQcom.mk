@@ -65,7 +65,8 @@ SOONG_CONFIG_qtidisplay += \
     shift_vertical \
     var1 \
     var2 \
-    var3
+    var3 \
+    wide_color
 
 # Set default values for qtidisplay config
 SOONG_CONFIG_qtidisplay_drmpp ?= false
@@ -80,6 +81,7 @@ SOONG_CONFIG_qtidisplay_shift_vertical ?= 0
 SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
+SOONG_CONFIG_qtidisplay_wide_color ?= false
 
 ifneq ($(TARGET_DISPLAY_SHIFT_HORIZONTAL),)
     SOONG_CONFIG_qtidisplay_shift_horizontal := $(TARGET_DISPLAY_SHIFT_HORIZONTAL)
@@ -87,6 +89,10 @@ endif
 
 ifneq ($(TARGET_DISPLAY_SHIFT_VERTICAL),)
     SOONG_CONFIG_qtidisplay_shift_vertical := $(TARGET_DISPLAY_SHIFT_VERTICAL)
+endif
+
+ifeq ($(TARGET_HAS_WIDE_COLOR_DISPLAY), true)
+    SOONG_CONFIG_qtidisplay_wide_color := true
 endif
 
 ifeq ($(TARGET_USES_FOD_ZPOS),true)
