@@ -66,7 +66,9 @@ SOONG_CONFIG_qtidisplay += \
     var1 \
     var2 \
     var3 \
-    wide_color
+    wide_color \
+    target_uses_aligned_ycbcr_height \
+    target_uses_aligned_ycrcb_height
 
 # Set default values for qtidisplay config
 SOONG_CONFIG_qtidisplay_drmpp ?= false
@@ -82,6 +84,8 @@ SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
 SOONG_CONFIG_qtidisplay_wide_color ?= false
+SOONG_CONFIG_qtidisplay_target_uses_aligned_ycbcr_height ?= false
+SOONG_CONFIG_qtidisplay_target_uses_aligned_ycrcb_height ?= false
 
 ifneq ($(TARGET_DISPLAY_SHIFT_HORIZONTAL),)
     SOONG_CONFIG_qtidisplay_shift_horizontal := $(TARGET_DISPLAY_SHIFT_HORIZONTAL)
@@ -97,6 +101,14 @@ endif
 
 ifeq ($(TARGET_USES_FOD_ZPOS),true)
     SOONG_CONFIG_qtidisplay_udfps := true
+endif
+
+ifeq ($(TARGET_USES_ALIGNED_YCBCR_HEIGHT),true)
+    SOONG_CONFIG_qtidisplay_target_uses_aligned_ycbcr_height := true
+endif
+
+ifeq ($(TARGET_USES_ALIGNED_YCRCB_HEIGHT),true)
+    SOONG_CONFIG_qtidisplay_target_uses_aligned_ycrcb_height := true
 endif
 
 # Add rmnetctl to soong config namespaces
